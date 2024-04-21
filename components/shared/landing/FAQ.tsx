@@ -9,7 +9,7 @@ export default function FAQ() {
   return (
     <section className="max-w-[1440px] mx-auto px-[2rem] mb-[15rem]">
       <h2 className="font-bold bg-clip-text text-transparent bg-gradient-to-b dark:from-neutral-200 from-neutral-500 dark:to-neutral-500 to-black text-3xl md:text-5xl text-center mb-[5rem]">
-        Frequently Asked Questions <span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-200 to-blue-700">.</span>
+        Frequently Asked Questions<span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-200 to-blue-700">.</span>
       </h2>
 
       <div className="mx-auto max-w-[800px]">

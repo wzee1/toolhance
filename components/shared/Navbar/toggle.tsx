@@ -29,7 +29,7 @@ export function ThemeToggle() {
       {isOpen && (
         <div className={cn("absolute top-full left-0 mt-2 w-24 shadow-lg rounded-md z-50 text-md", 
           theme === "light"
-          ? "bg-primary text-white"
+          ? "bg-black text-white"
           : "bg-white text-black"
         )}>
           {themes.map((themeOption) => (

@@ -1,0 +1,27 @@
+@media screen and (min-width: 500px) and (max-width: 1950px) {
+   body {
+     zoom: 1;
+   }
+}
+
+$width1: 250;
+
+@while ($width1 <= 500) {
+  @media screen and (min-width: #{$width1}px) {
+    body {
+      zoom: calc(#{$width1} / 500);
+    }
+  }
+  $width1: ($width1 + 50);
+}
+
+$width2: 1950;
+
+@while ($width2 <= 7680) {
+  @media screen and (min-width: #{$width2}px) {
+    body {
+      zoom: calc(#{$width2} / 1920);
+    }
+  }
+  $width2: ($width2 + 100);
+}
