@@ -58,7 +58,7 @@ export default function NavbarMobile() {
             }
 
             <a href="/tools" className="cursor-pointer">Tools</a>
-            <a href="/tools" className="cursor-pointer">FAQ</a>
+            <a href="/#faq" className="cursor-pointer">FAQ</a>
 
             <a href="/login" className="cursor-pointer">
               <Button className="text-xl hover:bg-blue-500 hover:text-white">

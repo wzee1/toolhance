@@ -16,16 +16,19 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import Login from "@/app/(auth)/login/page"
 
 const formSchema = z.object({
-  username: z.string().min(2).max(50),
+  email: z.string().min(5, "This is not a valid email!").email("This is not a valid email!"),
+  password: z.string().min(5, "Your password should be at least 5 characters long!").max(50, "You cannot enter more than 50 characters!")
 })
 
 export default function LoginForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
+      email: "",
+      password: ""
     },
   })
  
@@ -40,33 +43,39 @@ export default function LoginForm() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <FormField
             control={form.control}
-            name="username"
+            name="email"
             render={({ field }) => (
-              <>
-                <FormItem>
-                  <FormLabel>Email address</FormLabel>
-                  <FormControl>
-                    <Input placeholder="e.g. john@smith.com" {...field} />
-                  </FormControl>
-                </FormItem>
+              <FormItem>
+                <FormLabel>Email address</FormLabel>
+                <FormControl>
+                  <Input placeholder="e.g. john@smith.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
 
-                <FormItem className="mb-[10rem]">
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Enter your password..." {...field} />
-                  </FormControl>
-                </FormItem>
-              </>
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem className="mb-[10rem]">
+                <FormLabel>Password</FormLabel>
+                <FormControl>
+                  <Input placeholder="Enter your password..." {...field} type="password" />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
             )}
           />
 
           <div className="flex items-center justify-center w-fit gap-6">
-            <Button type="submit" className="bg-white text-black">Login</Button>
+            <Button type="submit" className="bg-white text-black">
+              Login
+            </Button>
             <>or</>
             <Button variant="outline" className="bg-black border-1">
-              <Link href="/sign-up">
-                Sign up
-              </Link>
+              <Link href="/sign-up">Sign up</Link>
             </Button>
           </div>
         </form>

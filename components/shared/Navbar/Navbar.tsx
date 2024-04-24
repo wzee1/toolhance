@@ -17,6 +17,7 @@ export default function Navbar() {
     <Image
       src={logoURL}
       alt="Toolhance logo"
+      className="cursor-pointer"
       height={50}
     />
 
@@ -40,10 +41,12 @@ export default function Navbar() {
             href="/tools"
             className="hover:text-blue-500 transition-all"
           >Tools</Link>
-          <Link
-            href="/tools"
-            className="hover:text-blue-500 transition-all"
-          >FAQ</Link>
+
+          {
+            pathname === "/"
+              ? <a href="#faq" className="hover:text-blue-500 transition-all">FAQ</a>
+              : <Link href="/#faq" className="hover:text-blue-500 transition-all">FAQ</Link>
+          }
 
           <ThemeToggle />
           

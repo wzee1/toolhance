@@ -47,7 +47,7 @@ export default function Bento() {
         </span>
         
         <span className="col-span-2 h-[15rem] lg:h-[18rem] min-[1183px]:h-[15rem] w-full rounded-lg bg-gradient-to-b from-blue-300 to-blue-700 p-1 hover:p-0 transition-all">
-          <div className="h-full flex items-center gap-4 p-8 bg-[url(../public/laptop.jpg)] bg-cover bg-center text-white rounded-lg">
+          <div className="h-full flex items-center gap-4 p-8 bg-[url(../public/organize.jpg)] bg-cover bg-center text-white rounded-lg">
             <div className="bg-black/70 p-4 rounded-lg w-fit h-fit mx-auto md:mx-0">
               <h3 className="text-2xl font-semibold mb-3">
                 Better Organization

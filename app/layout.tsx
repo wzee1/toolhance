@@ -8,6 +8,7 @@ import "./css/zoom.css"
 
 import Navbar from "@/components/shared/Navbar/Navbar";
 import NavbarMobile from "@/components/shared/Navbar/NavbarMobile";
+import Footer from "@/components/shared/Footer/Footer";
 
 export const metadata: Metadata = {
   title: "Toolhance",
@@ -32,6 +33,7 @@ export default function RootLayout({
           <Navbar />
           <NavbarMobile />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
