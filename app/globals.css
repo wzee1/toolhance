@@ -75,7 +75,13 @@
   }
 }
 
- 
+
+/* Custom: */
+* {
+  scroll-behavior: smooth;
+  scroll-padding: 7rem;
+}
+
 html::-webkit-scrollbar {
    width: .85em;
    background-color: rgb(30, 30, 30);
@@ -89,3 +95,6 @@ html {
    scrollbar-color: #3988FF rgb(30, 30, 30);
 }
 
+.light-svg {
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg); 
+}

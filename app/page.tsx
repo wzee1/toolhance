@@ -3,6 +3,9 @@ import Bento from "@/components/shared/landing/Bento"
 import CTASection from "@/components/shared/landing/CTASection"
 import FAQ from "@/components/shared/landing/FAQ"
 
+import Image from "next/image"
+import blobSrc from "@/public/blobs/blob3.svg"
+
 export default function Home() {
   return (
     <main>
@@ -10,6 +13,14 @@ export default function Home() {
       <Bento />
       <CTASection />
       <FAQ />
+
+      <div className="relative" />
+      <Image
+        src={blobSrc}
+        alt="background blur blob"
+        className="blur-[10rem] absolute right-[1rem] pointer-events-none"
+        height={200}
+      />
     </main>
   )
 }

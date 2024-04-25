@@ -1,5 +1,6 @@
 import {footerLinks, footerSocialLinks} from "./footerLinks"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function Footer() {
   return (
@@ -19,7 +20,7 @@ export default function Footer() {
               href={currentLink.href}
               className="text-gray-400 hover:text-gray-500 dark:hover:text-white transition-all"
             >
-              <span className="sr-only">Instagram</span>
+              <span className="sr-only">{currentLink.name}</span>
               {currentLink.svg}
             </Link>
           ))}

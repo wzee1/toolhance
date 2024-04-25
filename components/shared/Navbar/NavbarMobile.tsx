@@ -65,6 +65,7 @@ export default function NavbarMobile() {
                 Login
               </Button>
             </a>
+
             <ThemeToggle />
           </SheetDescription>
         </SheetHeader>
