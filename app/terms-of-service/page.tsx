@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function TermsOfService() {
   return (
     <section className="h-full max-w-[1440px] mx-auto px-[2rem] py-[10rem]">

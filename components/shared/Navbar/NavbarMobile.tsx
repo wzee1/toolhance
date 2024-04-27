@@ -17,11 +17,11 @@ import menu from "../../../public/menu.svg"
 import logoURL from "../../../public/logo.png"
 
 import { ThemeToggle } from "./toggle"
-import { cn } from "@/lib/utils"
+import Link from "next/link"
 
 export default function NavbarMobile() {
-
   const pathname = usePathname()
+
   const logo =
     <Image
       src={logoURL}
@@ -33,7 +33,14 @@ export default function NavbarMobile() {
   return (
     <nav className="min-[850px]:hidden">
       <div className="flex justify-between items-center">
-        {logo}
+        {pathname === "/"
+          ? <a onClick={() => window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            })}>{logo}</a>
+          : <Link href="/">{logo}</Link>
+        }
+
         <div className="rounded-full bg-blue-700/50 backdrop-blur-[8px] w-[55px] h-[55px] fixed top-5 right-3 z-10" />
       </div>
 
