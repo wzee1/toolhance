@@ -33,7 +33,7 @@ export default function ToolCard(
         </div>
       </div>
 
-      <p className="text-gray-700 mb-[4rem]">{desc}</p>
+      <p className="text-gray-500 dark:text-gray-300 mb-[4rem]">{desc}</p>
 
       <Button className="absolute bottom-4">
         <Link href={`/tools/${name}`}>Try it out now</Link>
