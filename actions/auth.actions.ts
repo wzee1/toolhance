@@ -15,6 +15,7 @@ import jwt from "jsonwebtoken"
 import { sendEmail } from "@/lib/email"
 import { generateCodeVerifier, generateState } from "arctic"
 import { facebook, google } from "@/lib/lucia/oauth"
+import pasteHTML from "@/components/shared/EmailVerification/emailVerification"
 
 export const resendVerificationEmail = async (email: string) => {
   try {
@@ -24,13 +25,13 @@ export const resendVerificationEmail = async (email: string) => {
 
     if (!existingUser) {
       return {
-        error: "User not found",
+        error: "User with these information is not found!",
       }
     }
 
     if (existingUser.isEmailVerified === true) {
       return {
-        error: "Email already verified",
+        error: "This email is already verified, try to login!",
       }
     }
 
@@ -40,7 +41,7 @@ export const resendVerificationEmail = async (email: string) => {
 
     if (!existedCode) {
       return {
-        error: "Code not found",
+        error: "Code not found, please try again!",
       }
     }
 
@@ -77,16 +78,13 @@ export const resendVerificationEmail = async (email: string) => {
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify-email?token=${token}`
 
     await sendEmail({
-      html: `
-        <h1>The email ${email} has been registered to Toolhance!</h1>
-        <a href="${url}">Verify your email</a>
-      `,
+      html: pasteHTML(url, email),
       subject: "Verify your email",
       to: email,
     })
 
     return {
-      success: "Email sent",
+      success: "Success, an email has been sent to your inbox!",
     }
   } catch (error: any) {
     return {
@@ -126,32 +124,11 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
 
     const url = `${process.env.NEXT_PUBLIC_BASE_URL}/api/verify-email?token=${token}`
 
-    // send an email at this step.
-
-    console.log(url)
-
     await sendEmail({
-      html: `
-        <h1>The email ${values.email} has been registered to Toolhance!</h1>
-        <a href="${url}">Verify your email</a>
-      `,
+      html: pasteHTML(url, values.email),
       subject: "Verify your email",
       to: values.email,
     })
-
-    /*
-     */
-    const session = await lucia.createSession(userId, {
-      expiresIn: 60 * 60 * 24 * 30,
-    })
-
-    const sessionCookie = lucia.createSessionCookie(session.id)
-
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes
-    )
 
     return {
       success: true,
@@ -181,13 +158,13 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
 
   if (!existingUser) {
     return {
-      error: "User not found",
+      error: "User with these information is not found!",
     }
   }
 
   if (!existingUser.hashedPassword) {
     return {
-      error: "User not found",
+      error: "User with these information is not found!",
     }
   }
 
@@ -198,13 +175,13 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
 
   if (!isValidPassword) {
     return {
-      error: "Incorrect username or password",
+      error: "Incorrect username or password, try again!",
     }
   }
 
   if (existingUser.isEmailVerified === false) {
     return {
-      error: "Email not verified",
+      error: "Email is not verified!",
       key: "email_not_verified",
     }
   }
@@ -222,7 +199,7 @@ export const signIn = async (values: z.infer<typeof SignInSchema>) => {
   )
 
   return {
-    success: "Logged in successfully",
+    success: "Logged in successfully!",
   }
 }
 

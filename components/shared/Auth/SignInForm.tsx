@@ -188,6 +188,7 @@ export function SignInForm() {
             disabled={count > 0 && count < 60}
             onClick={onResendVerificationEmail}
             variant={"link"}
+            className="px-0"
           >
             Send verification email {count > 0 && count < 60 && `in ${count}s`}
           </Button>
