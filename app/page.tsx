@@ -6,6 +6,13 @@ import FAQ from "@/components/shared/landing/FAQ"
 import Image from "next/image"
 import blobSrc from "@/public/blobs/blob3.svg"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Toolhance",
+  description: "Use Toolhance's tools to elevate your productivity!",
+}
+
 export default function Home() {
   return (
     <main>

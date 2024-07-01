@@ -15,7 +15,7 @@ export default function Bento() {
               </h3>
 
               <p className="text-base text-slate-300">
-                Streamline your workflow and<br />accomplish tasks more efficiently<br />with Toolhance's productivity tools.
+                Streamline your workflow and<br />accomplish tasks more efficiently<br />with Toolhance&apos;s productivity tools.
               </p>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function Bento() {
             </h3>
 
             <p className="w-[80%] md:w-2/3 lg:w-full mx-auto text-base text-slate-300">
-              Take control of your time and make the most of every moment with Toolhance's time-management tools.<br />
+              Take control of your time and make the most of every moment with Toolhance&apos;s time-management tools.<br />
               Empower to prioritaize, schedule and manage effectively.
             </p>
           </div>
@@ -54,7 +54,7 @@ export default function Bento() {
               </h3>
 
               <p className="text-base text-slate-300">
-                Keep your life organized and<br />on track with Toolhance's<br />organizational tools.
+                Keep your life organized and<br />on track with Toolhance&apos;s<br />organizational tools.
               </p>
             </div>
           </div>

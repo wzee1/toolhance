@@ -1,31 +1,34 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useCountdown } from "usehooks-ts"
+import Link from "next/link"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { toast } from "@/components/ui/use-toast"
+
+import { SignUpSchema } from "@/types/index"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { SignUpSchema } from "@/types/index"
+
 import {
   createGoogleAuthorizationURL,
   createFacebookAuthorizationURL,
   resendVerificationEmail,
   signUp,
 } from "@/actions/auth.actions"
-import { toast } from "@/components/ui/use-toast"
-import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-import { useCountdown } from "usehooks-ts"
-import Link from "next/link"
 
 export function SignUpForm() {
   const router = useRouter()
@@ -40,7 +43,8 @@ export function SignUpForm() {
       stopCountdown()
       resetCountdown()
     }
-  }, [count])
+  //}, [count])
+  }, [count, resetCountdown, stopCountdown])
 
   const [showResendVerificationEmail, setShowResendVerificationEmail] =
     useState(false)

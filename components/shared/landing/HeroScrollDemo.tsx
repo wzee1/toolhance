@@ -1,7 +1,6 @@
-"use client";
+"use client"
 
-import React from "react";
-import { ContainerScroll } from "../../ui/container-scroll-animation";
+import { ContainerScroll } from "../../ui/container-scroll-animation"
 
 export function HeroScrollDemo() {
   return (
@@ -21,7 +20,7 @@ export function HeroScrollDemo() {
         }
       />
     </div>
-  );
+  )
 }
 
 export const users = [
@@ -43,4 +42,4 @@ export const users = [
     image: "https://picsum.photos/id/12/300/300",
     badge: "Mentor",
   },
-];
+]

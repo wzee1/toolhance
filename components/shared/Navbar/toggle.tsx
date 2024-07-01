@@ -1,14 +1,14 @@
 "use client"
 
-import * as React from 'react'
+import * as React from "react"
 
 import lightDarkSrc from "@/public/lightdark.svg"
 import Image from "next/image"
 
-import { useTheme } from 'next-themes'
-import { cn } from '@/lib/utils'
+import { useTheme } from "next-themes"
+import { cn } from "@/lib/utils"
 
-const themes = ["light", "dark", "system"];
+const themes = ["light", "dark", "system"]
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()

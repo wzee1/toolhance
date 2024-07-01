@@ -1,3 +1,10 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Toolhance | Terms of Service",
+  description: "Toolhance's Terms of Service",
+}
+
 export default function TermsOfService() {
   return (
     <section className="h-full max-w-[1440px] mx-auto px-[2rem] py-[10rem]">

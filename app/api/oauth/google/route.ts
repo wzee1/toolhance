@@ -24,40 +24,24 @@ export const GET = async (req: NextRequest) => {
     const code = searchParams.get("code")
     const state = searchParams.get("state")
 
-    if (!code || !state) {
-      return Response.json(
-        { error: "Invalid request" },
-        {
-          status: 400,
-        }
-      )
-    }
+    if (!code || !state) return Response.json(
+      { error: "Invalid request" },
+      { status: 400 }
+    )
 
     const codeVerifier = cookies().get("codeVerifier")?.value
     const savedState = cookies().get("state")?.value
 
-    console.log({ codeVerifier, savedState, state })
+    if (!codeVerifier || !savedState) return Response.json(
+      { error: "Code verifier or saved state is not exists" },
+      { status: 400 }
+    )
 
-    if (!codeVerifier || !savedState) {
-      return Response.json(
-        { error: "Code verifier or saved state is not exists" },
-        {
-          status: 400,
-        }
-      )
-    }
-
-    if (savedState !== state) {
-      return Response.json(
-        {
-          error: "State does not match",
-        },
-        {
-          status: 400,
-        }
-      )
-    }
-
+    if (savedState !== state) return Response.json(
+      { error: "State does not match" },
+      { status: 400 }
+    )
+    
     const { accessToken, idToken, accessTokenExpiresAt, refreshToken } =
       await google.validateAuthorizationCode(code, codeVerifier)
 
@@ -70,21 +54,16 @@ export const GET = async (req: NextRequest) => {
         method: "GET",
       }
     )
-    console.log({ accessToken, idToken, accessTokenExpiresAt, refreshToken })
 
     const googleData = (await googleRes.json()) as GoogleUser
-
-    console.log("google data", googleData)
 
     await db.transaction(async (trx) => {
       const user = await trx.query.userTable.findFirst({
         where: eq(userTable.id, googleData.id),
       })
-      console.debug("User", user)
+
       let session = null
       if (!user) {
-        console.log("Creating user", user)
-
         const createdUserRes = await trx
           .insert(userTable)
           .values({
@@ -92,6 +71,7 @@ export const GET = async (req: NextRequest) => {
             id: googleData.id,
             name: googleData.name,
             profilePictureUrl: googleData.picture,
+            isEmailVerified: true
           })
           .returning({
             id: userTable.id,
@@ -101,9 +81,7 @@ export const GET = async (req: NextRequest) => {
           trx.rollback()
           return Response.json(
             { error: "Failed to create user" },
-            {
-              status: 500,
-            }
+            { status: 500 }
           )
         }
 
@@ -123,9 +101,7 @@ export const GET = async (req: NextRequest) => {
           trx.rollback()
           return Response.json(
             { error: "Failed to create OAuthAccountRes" },
-            {
-              status: 500,
-            }
+            { status: 500 }
           )
         }
       } else {
@@ -142,18 +118,14 @@ export const GET = async (req: NextRequest) => {
           trx.rollback()
           return Response.json(
             { error: "Failed to update OAuthAccountRes" },
-            {
-              status: 500,
-            }
+            { status: 500 }
           )
         }
       }
 
       return NextResponse.redirect(
         new URL("/dashboard", process.env.NEXT_PUBLIC_BASE_URL),
-        {
-          status: 302,
-        }
+        { status: 302 }
       )
     })
 
@@ -177,16 +149,12 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.redirect(
       new URL("/", process.env.NEXT_PUBLIC_BASE_URL),
-      {
-        status: 302,
-      }
+      { status: 302 }
     )
   } catch (error: any) {
     return Response.json(
       { error: error.message },
-      {
-        status: 500,
-      }
+      { status: 500 }
     )
   }
 }

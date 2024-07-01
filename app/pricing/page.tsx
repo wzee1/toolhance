@@ -1,6 +1,13 @@
 import { cardInfo } from "./cardInfo"
 import Link from "next/link"
 
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Toolhance | Pricing",
+  description: "Explore Toolhance's services' pricings!",
+}
+
 export default function Pricing() {
   return (
     <section className="max-w-[1440px] mx-auto px-[2rem] pt-[10rem]">

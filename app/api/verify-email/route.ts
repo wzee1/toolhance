@@ -13,16 +13,10 @@ export const GET = async (req: NextRequest) => {
 
     const token = searchParams.get("token")
 
-    if (!token) {
-      return Response.json(
-        {
-          error: "Token is not existed",
-        },
-        {
-          status: 400,
-        }
-      )
-    }
+    if (!token) return Response.json(
+      { error: "Token is not existed" },
+      { status: 400 }
+    )
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as {
       email: string
@@ -37,16 +31,11 @@ export const GET = async (req: NextRequest) => {
           eq(emailVerificationTable.code, decoded.code),
       })
 
-    if (!emailVerificationQueryResult) {
-      return Response.json(
-        {
-          error: "Invalid token",
-        },
-        {
-          status: 400,
-        }
-      )
-    }
+    if (!emailVerificationQueryResult) return Response.json(
+      { error: "Invalid token" },
+      { status: 400 }
+    )
+    
 
     await db
       .delete(emailVerificationTable)
@@ -71,15 +60,13 @@ export const GET = async (req: NextRequest) => {
       sessionCookie.attributes
     )
 
-    return Response.redirect(new URL(process.env.NEXT_PUBLIC_BASE_URL!), 302)
+    return Response.redirect(
+      new URL(process.env.NEXT_PUBLIC_BASE_URL!), 302
+    )
   } catch (e: any) {
     return Response.json(
-      {
-        error: e.message,
-      },
-      {
-        status: 400,
-      }
+      { error: e.message },
+      { status: 400 }
     )
   }
 }

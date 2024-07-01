@@ -5,8 +5,7 @@ export default async function NavbarMobile() {
   const { user } = await validateRequest()
 
   let signedIn = false
-  if (user)
-    signedIn = true
+  if (user) signedIn = true
 
   return (
     <NavbarMobileContent signedIn={signedIn}/>

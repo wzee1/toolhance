@@ -1,7 +1,7 @@
 import db from "@/lib/database"
 import { oauthAccountTable, userTable } from "@/lib/database/schema"
 import { lucia } from "@/lib/lucia"
-import { facebook, google } from "@/lib/lucia/oauth"
+import { facebook } from "@/lib/lucia/oauth"
 import { and, eq } from "drizzle-orm"
 import { generateId } from "lucia"
 import { cookies } from "next/headers"
@@ -14,23 +14,18 @@ export const GET = async (req: NextRequest) => {
 
     const code = searchParams.get("code")
 
-    if (!code) {
-      return Response.json(
-        { error: "Invalid request" },
-        {
-          status: 400,
-        }
-      )
-    }
+    if (!code) return Response.json(
+      { error: "Invalid request" },
+      { status: 400 }
+    )
+  
 
     const { accessToken, accessTokenExpiresAt } =
       await facebook.validateAuthorizationCode(code)
 
     const facebookRes = await fetch(
       `https://graph.facebook.com/me?access_token=${accessToken}&fields=id,name,email,picture`,
-      {
-        method: "GET",
-      }
+      { method: "GET" }
     )
 
     const facebookData = (await facebookRes.json()) as {
@@ -124,16 +119,12 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.redirect(
       new URL("/", process.env.NEXT_PUBLIC_BASE_URL),
-      {
-        status: 302,
-      }
+      { status: 302 }
     )
   } catch (error: any) {
     return Response.json(
       { error: error.message },
-      {
-        status: 500,
-      }
+      { status: 500 }
     )
   }
 }

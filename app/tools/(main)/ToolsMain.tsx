@@ -34,7 +34,7 @@ export default function ToolsMain({
           ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{toolCards}</div>
           : <>
             <h3 className="text-lg font-semibold">No tools were found!</h3>
-            <p className="text-gray-500">Use the search bar and the filter options to explore Toolhance's tools.</p>
+            <p className="text-gray-500">Use the search bar and the filter options to explore Toolhance&apos;s tools.</p>
           </>
       }
     </main>

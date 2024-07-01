@@ -1,13 +1,18 @@
-import { SignInForm } from "@/components/shared/Auth/SignInForm"
+import { SignInForm } from "@/components/shared/auth/SignInForm"
 import { validateRequest } from "@/lib/lucia"
 import { redirect } from "next/navigation"
+
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Toolhance | Sign In",
+  description: "Sign in to your Toolhance account!",
+}
 
 export default async function SignUpPage() {
   const { user } = await validateRequest()
 
-  if (user) {
-    return redirect("/")
-  }
+  if (user) return redirect("/account")
 
   return (
     <section className="mx-auto flex flex-col items-center justify-center px-6 py-[8rem] lg:py-[27rem] md:h-screen">

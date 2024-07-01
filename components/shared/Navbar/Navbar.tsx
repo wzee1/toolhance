@@ -6,8 +6,7 @@ export default async function Navbar() {
   const { user } = await validateRequest()
 
   let signedIn = false
-  if (user)
-    signedIn = true
+  if (user) signedIn = true
 
   return (
     <NavbarContent signedIn={signedIn} />

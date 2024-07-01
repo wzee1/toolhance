@@ -1,32 +1,43 @@
 "use client"
 
+import { Fragment, useEffect, useState } from "react"
+import { useRouter } from "next/navigation"
+import { useCountdown } from "usehooks-ts"
+import Link from "next/link"
+
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Button } from "@/components/ui/button"
+
+import { OTPSchema, SignInSchema } from "@/types/index"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
+
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { SignInSchema } from "@/types/index"
+import { toast } from "@/components/ui/use-toast"
+
 import {
   createFacebookAuthorizationURL,
   createGoogleAuthorizationURL,
+  credentialsMatched,
   resendVerificationEmail,
   signIn,
-  signUp,
 } from "@/actions/auth.actions"
-import { toast } from "@/components/ui/use-toast"
-import { useRouter } from "next/navigation"
-import { Fragment, useEffect, useState } from "react"
-import { useCountdown } from "usehooks-ts"
-import Link from "next/link"
+
+import { findUserByEmail } from "@/actions/database.actions"
+
+import {
+  Dialog, DialogContent,
+  DialogDescription, DialogFooter,
+  DialogHeader, DialogTitle
+} from "@/components/ui/dialog"
 
 export function SignInForm() {
   const [count, { startCountdown, stopCountdown, resetCountdown }] =
@@ -40,7 +51,8 @@ export function SignInForm() {
       stopCountdown()
       resetCountdown()
     }
-  }, [count])
+  // }, [count])
+  }, [count, resetCountdown, stopCountdown])
 
   const [showResendVerificationEmail, setShowResendVerificationEmail] =
     useState(false)
@@ -55,26 +67,69 @@ export function SignInForm() {
     },
   })
 
+  const [showOTPInput, setShowOTPInput] = useState(false)
+  const formOTP = useForm<z.infer<typeof OTPSchema>>({
+    resolver: zodResolver(OTPSchema),
+    defaultValues: { otp: "" },
+  })
+
   async function onSubmit(values: z.infer<typeof SignInSchema>) {
-    const res = await signIn(values)
-    if (res.error) {
+    const resMatched = await credentialsMatched(values) 
+    if (resMatched.error) {
       toast({
         variant: "destructive",
-        description: res.error,
+        description: resMatched.error,
       })
 
-      if (res?.key === "email_not_verified") {
+      if (resMatched?.key === "email_not_verified")
         setShowResendVerificationEmail(true)
-      }
-    } else if (res.success) {
+    } else if (resMatched.success) {
+      const user = await findUserByEmail(values.email)
+      if (!user?.is2FAEnabled) {
+        const res = await signIn(values, "")
+
+        if (res.error)
+          toast({
+            variant: "destructive",
+            description: res.error
+          })
+        else { 
+          toast({
+            variant: "default",
+            description: "Signed in successfully",
+          })
+          
+          router.push("/")
+        }
+      } else setShowOTPInput(true)
+    }
+  }
+
+  async function onSubmitOTP(
+    values: z.infer<typeof OTPSchema>
+  ) {
+    const valuesCredentials = {
+      email: form.getValues("email"),
+      password: form.getValues("password")
+    }
+
+    const res = await signIn(valuesCredentials, values.otp)
+
+    if (res.error)
+      toast({
+        variant: "destructive",
+        description: res.error
+      })
+    else {
       toast({
         variant: "default",
         description: "Signed in successfully",
       })
-
+      
+      setShowOTPInput(false)
       router.push("/")
     }
-  }
+  } 
 
   const onResendVerificationEmail = async () => {
     const res = await resendVerificationEmail(form.getValues("email"))
@@ -93,29 +148,25 @@ export function SignInForm() {
   }
 
   const onGoogleSignInClicked = async () => {
-    console.debug("Google sign in clicked")
     const res = await createGoogleAuthorizationURL()
-    if (res.error) {
+    if (res.error)
       toast({
         variant: "destructive",
         description: res.error,
       })
-    } else if (res.success) {
+    else if (res.success)
       window.location.href = res.data.toString()
-    }
   }
 
   const onFacebookSignInClicked = async () => {
-    console.debug("Facebook sign in clicked")
     const res = await createFacebookAuthorizationURL()
-    if (res.error) {
+    if (res.error)
       toast({
         variant: "destructive",
         description: res.error,
       })
-    } else if (res.success) {
+    else if (res.success)
       window.location.href = res.data.toString()
-    }
   }
 
   return (
@@ -181,8 +232,10 @@ export function SignInForm() {
               </FormItem>
             )}
           />
+
           <Button type="submit">Login to your account</Button>
         </form>
+
         {showResendVerificationEmail && (
           <Button
             disabled={count > 0 && count < 60}
@@ -195,7 +248,47 @@ export function SignInForm() {
         )}
       </Form>
 
-      <p>Don't have an account? <Link href="/sign-up" className="font-bold">Click here to sign up!</Link></p>
+      <p>Don&apos;t have an account? <Link href="/sign-up" className="font-bold">Click here to sign up!</Link></p>
+
+      { showOTPInput &&
+        <Dialog open={true}>
+          <DialogContent
+            className="sm:max-w-[425px]"
+            // @ts-ignore
+            setShowOTPInput={setShowOTPInput}
+          >
+            <DialogHeader>
+              <DialogTitle>Enter One-Time Password</DialogTitle>
+              <DialogDescription>
+                It seems you have enabled Two-Factor Authentication.<br />
+                To continue, please enter your One-Time Password (OTP)<br />
+                found in your authenticator application.
+              </DialogDescription>
+            </DialogHeader>
+            
+            <Form {...formOTP}>
+              <form onSubmit={formOTP.handleSubmit(onSubmitOTP)} className="space-y-4">
+                <FormField
+                  control={formOTP.control}
+                  name="otp"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>One-Time Password</FormLabel>
+                      <FormControl>
+                        <Input className="dark:text-white" placeholder="123456" type="text" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <DialogFooter>
+                  <Button type="submit">Login to your account</Button>
+                </DialogFooter>
+              </form>
+            </Form>
+          </DialogContent>
+        </Dialog>
+      }
     </Fragment>
   )
 }

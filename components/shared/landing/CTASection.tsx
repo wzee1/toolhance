@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-
+import Link from "next/link"
 import Image from "next/image"
+
 import blobSrc from "@/public/blobs/blob1.svg"
-import { WobbleCard } from "@/components/ui/wobble-card";
+import { WobbleCard } from "@/components/ui/wobble-card"
 
 export default function CTASection() {
   return (

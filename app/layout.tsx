@@ -1,20 +1,20 @@
-import type { Metadata } from "next";
-import { GeistSans } from 'geist/font/sans';
-import { ThemeProvider } from "../lib/theme-provider";
-import { cn } from "@/lib/utils";
+import type { Metadata } from "next"
+import { GeistSans } from 'geist/font/sans'
+import { ThemeProvider } from "../lib/theme-provider"
+import { cn } from "@/lib/utils"
 
-import "./globals.css";
+import "./globals.css"
 import "./css/zoom.css"
 
-import Navbar from "@/components/shared/Navbar/Navbar";
-import NavbarMobile from "@/components/shared/Navbar/NavbarMobile";
-import Footer from "@/components/shared/Footer/Footer";
-import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/shared/Navbar/Navbar"
+import NavbarMobile from "@/components/shared/Navbar/NavbarMobile"
+import Footer from "@/components/shared/Footer/Footer"
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
   title: "Toolhance",
   description: "Maximize Your Productivity with Toolhance.",
-};
+}
 
 export default function RootLayout({
   children,
@@ -39,5 +39,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  );
+  )
 }

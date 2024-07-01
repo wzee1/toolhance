@@ -3,12 +3,26 @@ import adapter from "./adapter"
 import { cookies } from "next/headers"
 import { cache } from "react"
 
+import db from "../database"
+import { twoFaTable } from "../database/schema"
+import { eq } from "drizzle-orm"
+
 export const lucia = new Lucia(adapter, {
   sessionCookie: {
     attributes: {
       // set to `true` when using HTTPS
       secure: process.env.NODE_ENV === "production",
     },
+  },
+  getUserAttributes: async (attributes: any) => {
+    const twoFaSetup = await db.query.twoFaTable.findFirst({
+      where: eq(twoFaTable.userId, attributes.id),
+    });
+
+    return {
+      ...attributes,
+      is2FAEnabled: !!twoFaSetup,
+    }
   },
 })
 
