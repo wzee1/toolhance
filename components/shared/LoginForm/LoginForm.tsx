@@ -9,14 +9,12 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import Login from "@/app/(auth)/login/page"
 
 const formSchema = z.object({
   email: z.string().min(5, "This is not a valid email!").email("This is not a valid email!"),

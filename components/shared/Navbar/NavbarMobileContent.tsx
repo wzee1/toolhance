@@ -34,7 +34,7 @@ export default function NavbarMobileContent(
     />
 
   return (
-    <nav className="min-[915px]:hidden">
+    <nav className="min-[930px]:hidden">
       <div className="flex justify-between items-center">
         {pathname === "/"
           ? <a onClick={() => window.scrollTo({
@@ -68,7 +68,7 @@ export default function NavbarMobileContent(
             }
 
             <a href="/tools" className="cursor-pointer">Tools</a>
-            <a href="/#faq" className="cursor-pointer">FAQ</a>
+            <a href="/pricing" className="cursor-pointer">Pricing</a>
 
             {
               signedIn &&

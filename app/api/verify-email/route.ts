@@ -5,6 +5,7 @@ import { eq } from "drizzle-orm"
 import { emailVerificationTable, userTable } from "@/lib/database/schema"
 import { lucia } from "@/lib/lucia"
 import { cookies } from "next/headers"
+
 export const GET = async (req: NextRequest) => {
   try {
     const url = new URL(req.url)
@@ -35,7 +36,6 @@ export const GET = async (req: NextRequest) => {
       { error: "Invalid token" },
       { status: 400 }
     )
-    
 
     await db
       .delete(emailVerificationTable)

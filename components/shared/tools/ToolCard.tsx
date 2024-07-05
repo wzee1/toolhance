@@ -18,7 +18,12 @@ export default function ToolCard(
           {name.length <= 28
             ? name : name.substring(0, 25) + "..."}
         </h3>
-        <p>{pricing}</p>
+        <p 
+          className={`${ pricing === "Premium"
+            ? "bg-blue-500 text-white"
+            : "border bg-white text-black"
+          } transition-all p-3 rounded-se-lg  rounded-es-lg absolute top-0 right-0 translate-x-[1px] translate-y-[-1px] w-fit text-center font-bold`}
+        >{pricing}</p>
       </div>
       
       <div className="flex gap-1 mb-5">

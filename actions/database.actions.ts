@@ -2,6 +2,7 @@
 
 import db from "@/lib/database"
 import {
+  sessionTable,
   userTable
 } from "@/lib/database/schema"
 import { eq } from "drizzle-orm"
@@ -32,6 +33,21 @@ export const findUserByEmail = async (email: string) => {
     return user
   } catch (error: any) {
     console.error("Error finding user by ID:", error)
+    return null  // Handle error and indicate user not found
+  }
+}
+
+export const getSessionsByUserId = async (userId: string) => {
+  try {
+    const sessions = await db.query.sessionTable.findMany({
+      where: eq(sessionTable.userId, userId),
+    })
+
+    if (!sessions) return null  // Indicate sessions are not found
+
+    return sessions
+  } catch (error: any) {
+    console.error("Error getting sessions by user ID:", error)
     return null  // Handle error and indicate user not found
   }
 }

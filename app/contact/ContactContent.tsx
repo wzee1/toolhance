@@ -49,6 +49,7 @@ const fields = [
 ]
 
 import type { Metadata } from "next"
+import PageHeader from "@/components/shared/other/PageHeader"
 
 export const metadata: Metadata = {
   title: "Toolhance | Contact",
@@ -77,10 +78,7 @@ export default function Contact() {
 
   return (
     <section className="h-full max-w-[1440px] mx-auto px-[2rem] py-[10rem] relative">
-      <h1
-        className="font-bold bg-clip-text text-transparent  bg-gradient-to-b dark:from-neutral-200 from-neutral-500 dark:to-neutral-500 to-black text-3xl md:text-5xl text-center mb-[5rem]"
-      >Contact Us
-      <span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-200 to-blue-700">.</span></h1>
+      <PageHeader text="Contact Us"/>
       
       <div className="grid items-center md:grid-cols-2">  
         <ul className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2 max-w-fit h-fit gap-[3.5rem] mb-10 mx-auto md:order-2">

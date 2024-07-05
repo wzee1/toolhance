@@ -41,3 +41,14 @@ export const ResetPasswordSchema = z
     message: "New password must be different from the current password",
     path: ["newPassword"],
   })
+
+export interface userInfo {
+  id: string
+  hashedPassword: string | null
+  name: string | null
+  email: string | null
+  isEmailVerified: boolean
+  profilePictureUrl: string | null
+  is2FAEnabled: boolean
+  hasPremium: boolean
+}

@@ -9,9 +9,13 @@ import ForgetPassword from "./ForgetPassword"
 import ImageUpload from "./ImageUpload"
 import SubscriptionPlan from "./SubscriptionPlan"
 
-export default function ModifyAccountTab({
-  userInfo, userName, userPicture, plan
-}: any) {
+import { userInfo } from "@/types"
+
+export default function ModifyAccountTab(
+  { userInfo }: { userInfo: userInfo }
+) {
+  const plan = userInfo?.hasPremium ? "premium" : "free"
+
   return (
     <TabsContent value="modifyAccount">
       <div className="p-5 bg-accent rounded-sm">
@@ -22,7 +26,7 @@ export default function ModifyAccountTab({
         {
           !userInfo?.hashedPassword
             ? <>
-            <p className="text-center text-gray-300">
+            <p className="text-center text-gray-600 dark:text-gray-300">
               You signed up with a third-party provider.<br/>
               To change your password, please visit their website!
             </p>
@@ -45,7 +49,7 @@ export default function ModifyAccountTab({
         }
 
         <Separator
-          className="my-10 mx-auto bg-black/40 dark:bg-white/40"
+          className="my-10 mx-auto bg-black/20 dark:bg-white/30"
         />
 
         <h2 className="text-xl font-bold text-center my-4 mb-10">
@@ -54,12 +58,13 @@ export default function ModifyAccountTab({
         <ImageUpload />
 
         <Separator
-          className="my-10 mx-auto bg-black/40 dark:bg-white/40"
+          className="my-10 mx-auto bg-black/20 dark:bg-white/30"
         />
+        
         <h2 className="text-xl font-bold text-center my-4 mb-10">
           Manage Subscription Plan
         </h2>
-        <SubscriptionPlan />
+        <SubscriptionPlan plan={plan} />
 
       </div>
     </TabsContent>

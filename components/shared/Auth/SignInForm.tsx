@@ -263,6 +263,7 @@ export function SignInForm() {
                 It seems you have enabled Two-Factor Authentication.<br />
                 To continue, please enter your One-Time Password (OTP)<br />
                 found in your authenticator application.
+                If you can&apos;t access your OTP, you can use your saved backup code.
               </DialogDescription>
             </DialogHeader>
             

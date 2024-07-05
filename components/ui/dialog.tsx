@@ -36,8 +36,10 @@ const DialogContent = React.forwardRef<
   // @ts-ignore
   ({ className, setShowOTPInput, children, ...props }, ref) => {
     const onClose = () => {
-      // Close the dialog by setting showOTPInput to false
-      setShowOTPInput(false);
+      if (typeof setShowOTPInput === 'function') {
+        // Close the dialog by setting showOTPInput to false
+        setShowOTPInput(false);
+      }
     };
 
     return (

@@ -1,4 +1,6 @@
+import PageHeader from "@/components/shared/other/PageHeader"
 import type { Metadata } from "next"
+import Link from "next/link"
 
 export const metadata: Metadata = {
   title: "Toolhance | Terms of Service",
@@ -6,16 +8,143 @@ export const metadata: Metadata = {
 }
 
 export default function TermsOfService() {
+  const companyName = "Toolhance"
+  const companyEmail = "contact@toolhance.com"
+  const arbitrationOrganization = "Arbitration Organization"
+
+  const lastUpdated = "July 4th, 2024"
+
+  const companyOwner = "Toolhance Inc."
+  const streetAddress = "Something Str. 5"
+  const cityData = "Debrecen, 4031"
+  const country = "Hungary"
+
+  const serviceDesc = "Toolhance provides a variety of tools and resources designed to streamline workflows, improve efficiency, and foster collaboration among users. We may modify or discontinue services at any time without notice."
+
   return (
     <section className="h-full max-w-[1440px] mx-auto px-[2rem] py-[10rem]">
-      <h1
-        className="font-bold bg-clip-text text-transparent  bg-gradient-to-b dark:from-neutral-200 from-neutral-500 dark:to-neutral-500 to-black text-3xl md:text-5xl text-center mb-[5rem]"
-      >Terms of Service
-      <span className="bg-clip-text text-transparent bg-gradient-to-b from-blue-200 to-blue-700">.</span></h1>
+      <PageHeader text="Terms of Service" />
 
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugiat in beatae labore doloribus eaque doloremque inventore rem alias nesciunt dolorem officiis hic harum, rerum minima quo incidunt. Explicabo dignissimos eos repellat, repudiandae eius est. Sed consequuntur cupiditate praesentium quaerat excepturi obcaecati veritatis. Modi consequatur voluptates natus nihil animi autem, nisi recusandae officia. Ullam ea eius, consequatur illum ad culpa. Voluptatum impedit et aperiam natus necessitatibus perferendis autem corrupti odit rerum obcaecati voluptas excepturi iure reiciendis, quia eaque qui at harum commodi, illum fugiat cumque praesentium distinctio maiores dicta? Modi minus aliquid quod ducimus debitis quis nesciunt obcaecati reiciendis libero nisi asperiores optio doloribus aliquam delectus temporibus eum inventore, aspernatur eaque dolores totam fuga sed incidunt? Doloremque laboriosam nemo enim veniam ipsam natus est esse? Ad mollitia minima quas quos id illum nobis quia, error, ipsam optio vero officia est molestiae quaerat? Modi non, ea vitae impedit corrupti enim doloribus, sapiente itaque iure aut earum ipsam qui facere repellendus aspernatur cupiditate quaerat consequuntur nesciunt sint, quo quod! Obcaecati officia expedita eaque molestias aspernatur architecto vero dolorum ut, quos nam cumque esse ratione labore harum quia illum aut, nostrum, quis adipisci possimus illo. Unde suscipit sapiente veritatis necessitatibus, aliquam impedit error alias cum ea esse, velit in rerum est quam, nisi animi repellendus obcaecati incidunt. Odio doloremque quam molestias quis sit quas facere, dolore, dolorem cumque ipsa dignissimos ducimus excepturi ex rem consequuntur! Assumenda ex possimus voluptate eum rerum blanditiis. Eaque tempore voluptatum commodi pariatur, adipisci, dolorum eligendi quas repellat iure porro facilis deleniti cupiditate quia unde modi odit, atque repellendus! Dolor harum aperiam aliquid odit consequatur quisquam eos quibusdam obcaecati, atque delectus quo non molestiae commodi sed hic iure in, suscipit impedit quas natus ea ab placeat earum. Animi doloremque reprehenderit, ex quo pariatur nam temporibus cupiditate praesentium, ducimus, velit corporis enim! Odit illo enim, ex, natus magnam nihil aliquam minus alias eaque dicta voluptatem aspernatur, cum qui ipsam quas ab voluptatum sed? Blanditiis velit, atque sapiente necessitatibus fuga ipsa consequatur. Quisquam illum iure eius praesentium at in doloremque recusandae? Repellat harum ullam assumenda architecto obcaecati, iure laudantium quia sequi quibusdam soluta vel praesentium rerum ipsum facere reiciendis nisi? Quos tempore dolorem amet dolorum recusandae, architecto corporis animi commodi quis eligendi autem similique delectus quisquam dolores corrupti, quam ea vel? Hic omnis, natus quisquam eos fugit consectetur dolore obcaecati quas labore. Sunt quae vel voluptas unde amet tenetur dolorem quod fugit sint nisi nemo in commodi velit laboriosam quasi, accusantium ex, saepe nostrum excepturi! Excepturi explicabo aliquam quis molestiae, ad nesciunt minus sapiente a eligendi quaerat soluta ab quisquam dolorum beatae veritatis voluptatibus qui esse expedita laboriosam voluptas aperiam reprehenderit omnis. Consequuntur ullam saepe delectus ut minima cum laudantium nesciunt rerum est. Dolorem magnam doloribus quasi beatae! Laborum, aliquam alias vitae ab eligendi dolore voluptas tenetur debitis facere sed iusto, quasi mollitia in aperiam eius doloremque doloribus non assumenda autem. Rem, expedita excepturi. Odit adipisci eos rem odio culpa facilis ex delectus nemo quaerat dolorum, libero repellendus eligendi vitae ut ratione voluptatibus molestias explicabo hic obcaecati harum nam possimus sed? Optio voluptatem rerum pariatur odit eveniet doloremque, molestiae natus assumenda officia similique id aliquam veritatis voluptate aut dolor odio accusantium? Impedit, perferendis ex recusandae amet optio praesentium nostrum porro libero natus id, placeat, veniam illo! Sit fuga vitae dicta magnam omnis quis, dolor alias quidem voluptatem modi nostrum ut accusamus, assumenda eveniet consectetur facilis facere earum quibusdam architecto nisi harum laboriosam odit. Reiciendis, nostrum corporis, libero perspiciatis maiores sint corrupti veritatis, repellat labore itaque expedita numquam aperiam culpa. Saepe similique voluptatem mollitia doloremque, natus modi illum eligendi fuga, sed, porro molestiae itaque. Harum atque enim iure. Quod quae, velit enim asperiores nemo qui ab neque labore alias voluptates odit ratione esse molestias accusamus obcaecati deserunt corrupti delectus deleniti sequi eaque aut iste possimus. Reprehenderit, facilis? Labore sint reprehenderit iste tempore aliquam optio, itaque, facere numquam dignissimos eveniet tempora magni omnis exercitationem molestias provident nobis aut ut quia culpa. Fugiat exercitationem delectus libero dolorem a labore, nobis cupiditate itaque debitis veritatis quis deleniti quam, quas rerum sint nam, facilis soluta officia. Natus quam perspiciatis odit rerum dolores cumque voluptatibus ex. Reiciendis velit deleniti et! Reprehenderit eaque quo laudantium dolore, dicta exercitationem expedita. Illum ipsum quo voluptatum ullam, reiciendis deleniti sit eaque aliquid similique! Veniam fugiat quos nulla blanditiis consequuntur reiciendis. Est nobis magnam sequi, dicta id, necessitatibus voluptatum doloremque cum, architecto veritatis error enim repellat iste facilis minima! Mollitia dicta quisquam amet non perspiciatis nihil, distinctio placeat, dolore deleniti sint ratione porro blanditiis consectetur quam vero. Perspiciatis, nulla laboriosam. Repellat, ducimus officia eaque magnam maxime est doloribus recusandae facilis aspernatur sit delectus magni sed, libero id, ea deleniti quasi? Ex nesciunt quos accusamus velit tempora possimus corrupti eligendi a fugit officia suscipit beatae officiis magni facere, expedita autem pariatur quis, vero ipsum quod ea et obcaecati assumenda vitae. In, temporibus, eius repudiandae aut modi nihil distinctio ratione consectetur non porro, ea fuga quis similique facere numquam ipsum minus dolore vero? Autem accusamus quibusdam molestiae iusto accusantium sint molestias facere, aliquam aliquid natus voluptates sapiente illo eligendi velit nihil? Earum, aliquid! Ut, omnis ratione! Distinctio nemo in corporis consectetur, tempore facere excepturi deleniti ullam velit eum iste cumque laboriosam commodi maxime id, aut voluptatum, laudantium odio! Ea saepe sapiente sequi expedita tempore accusantium autem, enim illo repellendus nisi rerum totam? A nobis libero reprehenderit, mollitia aut recusandae quasi, cupiditate consequatur tenetur fugiat error officia sequi aspernatur hic laudantium reiciendis. Quaerat quo quos consequatur et repellat, odio eaque cumque harum itaque amet distinctio rem, natus dolorem labore sed nam dolores perspiciatis, maiores voluptate facere assumenda illum reprehenderit nesciunt. Dicta, placeat nemo commodi blanditiis ullam aperiam veritatis molestiae excepturi voluptatum sequi! Totam, maiores ea. Odit harum, voluptatem et cumque nisi magni eaque repudiandae nemo iure. Repellendus repudiandae fugit, distinctio sint repellat maxime voluptatibus, suscipit blanditiis excepturi illum eum explicabo architecto ipsam quibusdam atque saepe quaerat, accusantium quia voluptates unde nulla sed animi nemo! Magnam consectetur corporis numquam molestias quaerat reiciendis, excepturi at nemo porro nostrum?
-      </p>
+      <div className="max-w-5xl mx-auto shadow-md rounded-lg overflow-hidden">
+        <div className="px-6 py-8 md:p-10">
+          <p className="mb-6">
+            Welcome to <b>{companyName}</b>! By using our website and services, you agree to these terms. Please read them carefully.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            1. Acceptance of Terms
+          </h3>
+          <p className="mb-4">
+            By accessing and using {companyName}, you agree to be bound by these Terms of Service, our <u><Link href="/privacy-policy">Privacy Policy</Link></u>, and any additional terms and conditions that apply to specific services.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            2. Definitions
+          </h3>
+          <ul className="list-disc list-inside mb-6">
+            <li>
+              <b>{companyName}</b>: {companyName} is an online platform that connects users with tools and resources for enhancing productivity.
+            </li>
+            <li>
+              <b>User</b>: Any individual or organization accessing {companyName}.
+            </li>
+            <li>
+              <b>Content</b>: Refers to all text, images, videos, and other materials uploaded, downloaded, or appearing on {companyName}.
+            </li>
+          </ul>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            3. User Responsibilities
+          </h3>
+          <p className="mb-1">
+            Users agree not to:
+          </p>
+          <ul className="list-disc list-inside mb-4">
+            <li>Violate any applicable laws or regulations.</li>
+            <li>Upload or share any malicious software or spam content.</li>
+            <li>Engage in fraudulent activities or impersonate others.</li>
+          </ul>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            4. Service Description
+          </h3>
+          <p className="mb-4">{serviceDesc}</p>
+          
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            5. User Accounts
+          </h3>
+          <p className="mb-4">
+            Users must create an account to access certain features of {companyName}. Account credentials must be kept confidential, and account sharing is strictly prohibited. Users are responsible for all activities that occur under their account.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            6. Content Ownership
+          </h3>
+          <p className="mb-4">
+            Users retain ownership of any content they upload or share on {companyName}. By posting content, users grant {companyName} a non-exclusive, royalty-free license to use, reproduce, modify, and distribute the content for the purposes of operating and promoting the platform.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            7. Payments and Fees
+          </h3>
+          <p className="mb-4">
+            Some features or services on {companyName} may require payment. Payment terms and conditions will be clearly communicated at the time of purchase. Toolhance reserves the right to change pricing and payment terms at any time.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            8. <u><Link href="/privacy-policy">Privacy Policy</Link></u>
+          </h3>
+          <p className="mb-4">
+            Our Privacy Policy explains how we collect, use, and protect user information. By using {companyName}, you consent to the collection and use of your data as outlined in our Privacy Policy.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            9. Intellectual Property
+          </h3>
+          <p className="mb-4">
+            {companyName} retains all rights, title, and interest in and to the platform and its intellectual property. Users must obtain permission before using any of {companyName}&apos;s trademarks, logos, or copyrighted materials.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            10. Termination
+          </h3>
+          <p className="mb-4">
+            Toolhance may suspend or terminate user accounts that violate these Terms of Service or engage in prohibited activities. Users may also choose to terminate their accounts at any time by following the account closure procedures provided by Toolhance.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            11. Dispute Resolution
+          </h3>
+          <p className="mb-4">
+            Any disputes arising out of or relating to these Terms of Service will be resolved through binding arbitration in accordance with the rules of {arbitrationOrganization}, with the proceedings conducted in {cityData}.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            12. Changes to Terms of Service
+          </h3>
+          <p className="mb-4">
+            {companyName} reserves the right to update or modify these Terms of Service at any time. Changes will be effective immediately upon posting to the {companyName} website. Continued use of {companyName} after such changes constitutes acceptance of the updated Terms of Service.
+          </p>
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">
+            13. Contact Us
+          </h3>
+          <p className="mb-6">
+            If you have any questions or concerns about these Terms of Service, please contact us at <a href={`mailto:${companyEmail}`} className="text-blue-500">{companyEmail}</a>.
+          </p>
+
+          <p className="mt-8 text-sm text-gray-500">
+            This document was last updated on {lastUpdated}.<br />
+            For previous versions of these Terms of Service, please contact {companyName} Inc. at the following address:
+          </p>
+          <p className="text-sm text-gray-500 ml-2">
+            {companyOwner}<br />
+            {streetAddress}<br />
+            {cityData}<br />
+            {country}
+          </p>
+        </div>
+      </div>
     </section>
   )
 }

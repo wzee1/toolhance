@@ -22,7 +22,7 @@ export default function NavbarContent({signedIn}: {signedIn: boolean}) {
     />
 
   return (
-    <nav className="min-[915px]:block hidden fixed z-[1000] h-[5rem] w-full dark:bg-[#111115]/70 bg-white/70 backdrop-blur-[8px] px-[2rem]">
+    <nav className="min-[930px]:block hidden fixed z-[1000] h-[5rem] w-full dark:bg-[#111115]/70 bg-white/70 backdrop-blur-[8px] px-[2rem]">
       <div className="flex justify-between items-center h-[5rem] max-w-[1400px] mx-auto">
         {pathname === "/"
           ? <a onClick={() => window.scrollTo({
@@ -41,12 +41,10 @@ export default function NavbarContent({signedIn}: {signedIn: boolean}) {
             href="/tools"
             className="hover:text-blue-500 transition-all"
           >Tools</Link>
-
-          {
-            pathname === "/"
-              ? <a href="#faq" className="hover:text-blue-500 transition-all">FAQ</a>
-              : <Link href="/#faq" className="hover:text-blue-500 transition-all">FAQ</Link>
-          }
+          <Link
+            href="/pricing"
+            className="hover:text-blue-500 transition-all"
+          >Pricing</Link>
 
           {
             signedIn &&

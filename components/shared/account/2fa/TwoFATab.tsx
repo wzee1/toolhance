@@ -2,19 +2,24 @@ import { TabsContent } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 
 import Link from "next/link"
+import Image from "next/image"
 
 import TwoFA from "./TwoFA"
 
-export default function AccountInfo({
-  userInfo, userName, userPicture, plan
-}: any) {
+import greenCheckSrc from "@/public/green-check.gif"
+import { Remove2FA } from "./Remove2FA"
+import { userInfo } from "@/types"
+
+export default function AccountInfo(
+  { userInfo }: { userInfo: userInfo }
+) {
   return (
     <TabsContent value="twoFA">
       <div className="p-5 bg-accent rounded-sm">
         {
           !userInfo?.hashedPassword
             ? <>
-            <p className="text-center text-gray-300">
+            <p className="text-center text-gray-600 dark:text-gray-300">
               You signed up with a third-party provider.<br/>
               To setup Two-Factor Authentication,<br />
               please visit their website!
@@ -34,7 +39,23 @@ export default function AccountInfo({
               </Link>
             </div>
             </>
-            : <TwoFA />
+            : !userInfo?.is2FAEnabled
+              ? <TwoFA />
+              : <div className="flex items-center flex-col">
+                  <h2 className="text-xl font-bold text-center my-3">
+                    Congratulations, you have<br />Two-Factor Authentication enabled! 
+                  </h2>
+        
+                  <Image
+                    src={greenCheckSrc}
+                    alt="Success"
+                    width={100}
+                    height={100}
+                    className="mb-5"
+                  />
+
+                  <Remove2FA />
+                </div>
         }
       </div>
     </TabsContent>

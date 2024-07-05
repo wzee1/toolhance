@@ -1,10 +1,10 @@
 export const footerLinks = [
   {name: "Home", href: "/"},
   {name: "Tools", href: "/tools"},
-  {name: "FAQ", href: "/#faq"},
   {name: "Pricing", href: "/pricing"},
   {name: "Contact", href: "/contact"},
   {name: "Terms", href: "/terms-of-service"},
+  {name: "Privacy", href: "/privacy-policy"},
 ]
 
 export const footerSocialLinks = [

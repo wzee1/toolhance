@@ -7,7 +7,8 @@ export const userTable = pgTable("user", {
   isEmailVerified: boolean("is_email_verified").notNull().default(false),
   profilePictureUrl: text("profile_picture_url"),
   name: text("name"),
-  is2FAEnabled: boolean('is_2fa_enabled').notNull().default(false)
+  is2FAEnabled: boolean('is_2fa_enabled').notNull().default(false),
+  hasPremium: boolean("has_premium").notNull().default(false)
 })
 
 export const oauthAccountTable = pgTable("oauth_account", {
@@ -51,4 +52,5 @@ export const sessionTable = pgTable("session", {
 export const twoFaTable = pgTable("two_fa", {
   userId: text("user_id").notNull().unique().references(() => userTable.id),
   secret: text("secret").notNull(),
-});
+  backupCode: text("backup_code").notNull()
+})

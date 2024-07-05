@@ -17,6 +17,7 @@ import {
 export default function TwoFA() {
   const [secret, setSecret] = useState("")
   const [otp, setOtp] = useState("")
+  const [backupCode, setBackupCode] = useState("")
   const [step, setStep] = useState(1)
   const [error, setError] = useState("")
 
@@ -33,7 +34,8 @@ export default function TwoFA() {
       const data = await generate2FASecretAction()
 
       if (data.status == 200) {
-        setSecret(data.message as string)
+        setSecret(data.message?.secret as string)
+        setBackupCode(data.message?.backupCode as string)
         setStep(2)
       }
     } catch (error) {
@@ -43,7 +45,9 @@ export default function TwoFA() {
 
   const verifyOtp = async () => {
     try {
-      const data = await verifyOTPAction({ otp, secret })
+      const data = await verifyOTPAction(
+        { otp, secret, backupCode }
+      )
       
       if (data.success) {
         setStep(3)
@@ -82,7 +86,11 @@ export default function TwoFA() {
             />
           </div>
 
-          <p className="mb-2">Secret: {secret}</p>
+          <p><b>Secret:</b> {secret}</p>
+          <p className="text-white/50 mb-2">
+            Alternatively, enter the secret code into your authenticator app instead of scanning the QR code.
+          </p>
+
           <Input 
             type="text" placeholder="Enter OTP"
             value={otp} onChange={(e) => setOtp(e.target.value)}
@@ -100,6 +108,14 @@ export default function TwoFA() {
           <h2 className="text-xl font-bold text-center my-3">
             2FA Setup Complete
           </h2>
+
+          <h3 className="text-lg my-1">
+            Your backup code: {backupCode}
+          </h3>
+
+          <p className="my-3">
+            Please save this backup code in a safe place. Use it to log in if you can&apos;t access the one-time passcode from your authenticator app. You can also use this code to disable Two-Factor Authentication
+          </p>
 
           <Image
             src={greenCheckSrc}

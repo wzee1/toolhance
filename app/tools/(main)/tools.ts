@@ -9,7 +9,7 @@ export const tools = [
   },
   {
     name: "second",
-    desc: "second nigga",
+    desc: "second tool",
     pricing: "Premium",
     tags: [
       "tag1", "tag4", "tag5"
