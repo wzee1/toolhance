@@ -29,12 +29,9 @@ export const resetPassword = async (
       message: "User with these informations is not found!",
     }
     
-    try {
-      await rateLimitByKey(user.id, 10, 60000)
-    } catch {
-      return {
-        error: "Rate limit exceeded", status: 429
-      } 
+    const canProceed = await rateLimitByKey(user.id, 10, 60000)
+    if (!canProceed) return {
+      message: "Rate limit exceeded", status: 429
     }
 
     const existedUser = await db.query.userTable.findFirst({

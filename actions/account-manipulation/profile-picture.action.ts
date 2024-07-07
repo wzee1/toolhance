@@ -20,13 +20,10 @@ export async function uploadImage(formData: FormData) {
       formData.get("cooldown") as string
     ) * 1000
 
-    try {
-      await rateLimitByKey(userId, 1, cooldownMiliSeconds)
-    } catch {
-      return {
-        error: "Rate limit exceeded", status: 429
-      } 
-    }
+    const canProceed = await rateLimitByKey(user.id, 5, cooldownMiliSeconds)
+    if (!canProceed) return {
+      error: "Rate limit exceeded", status: 429
+    } 
 
     const imageData = formData.get("image")
     

@@ -43,12 +43,9 @@ export async function generate2FASecretAction() {
       error: "Unauthorized", status: 401
     }
 
-    try {
-      await rateLimitByKey(user.id, 5, 60000)
-    } catch {
-      return {
-        error: "Rate limit exceeded", status: 429
-      } 
+    const canProceed = await rateLimitByKey(user.id, 5, 60000)
+    if (!canProceed) return {
+      error: "Rate limit exceeded", status: 429
     }
   
     const secret = await generate2FASecret()

@@ -1,10 +1,13 @@
 import PageHeader from "@/components/shared/other/PageHeader"
+
 import type { Metadata } from "next"
+import CookieButton from "./CookieButton"
 
 export const metadata: Metadata = {
   title: "Toolhance | Privacy Policy",
   description: "Toolhance's Privacy Policy",
 }
+
 
 export default function PrivacyPolicy() {
   const companyName = "Toolhance"
@@ -81,12 +84,32 @@ export default function PrivacyPolicy() {
             <li>Request deletion of your account, subject to legal and contractual obligations.</li>
           </ul>
 
-          <h3 className="text-lg font-semibold mt-6 mb-2">6. Changes to This Policy</h3>
+          <h3 className="text-lg font-semibold mt-6 mb-2">6. Cookies</h3>
+          <p className="mb-1">
+            {companyName} uses the following cookies, that users may disable.
+          </p>
+          <ul className="list-disc list-inside mb-6">
+            <li>
+              <b>Necessary cookies:</b> These cookies are essential for the website to function properly.
+            </li>
+
+            <li>
+              <b>Analytics cookies:</b> These cookies collect information about how users interact with the website, such as which pages are visited most often. This data is used to improve the performance and user experience of the site. Users can choose to disable these cookies without affecting the core functionality of the site.
+            </li>
+
+            <li>
+              <b>Marketing cookies:</b> These cookies are used to track visitors across websites to display ads that are relevant and engaging for the individual user. They also help measure the effectiveness of advertising campaigns. Users can opt out of these cookies, which will not affect the site&apos;s functionality but may result in less targeted advertising.
+            </li>
+            <CookieButton className="mt-3" />
+          </ul>
+
+
+          <h3 className="text-lg font-semibold mt-6 mb-2">7. Changes to This Policy</h3>
           <p className="mb-1">
             We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on our website.
           </p>
 
-          <h3 className="text-lg font-semibold mt-6 mb-2">7. Contact Us</h3>
+          <h3 className="text-lg font-semibold mt-6 mb-2">8. Contact Us</h3>
           <p className="mb-6">
             If you have questions or concerns about this Privacy Policy, please contact us at <a href={`mailto:${companyEmail}`} className="text-blue-500">{companyEmail}</a>.
           </p>

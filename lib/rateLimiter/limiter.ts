@@ -13,7 +13,7 @@ export async function rateLimitByIP(
 
   if (!ip) throw new Error("ERROR: IP address not found!")
   
-  rateLimitByKey(ip, limit, window)
+  return rateLimitByKey(ip, limit, window)
 }
 
 export async function rateLimitByKey(
@@ -30,5 +30,6 @@ export async function rateLimitByKey(
 
   tracker.count++
   
-  if (tracker.count > limit) throw new Error("ERROR: Rate limit exceeded!")
+  if (tracker.count > limit) return false
+  return true
 }

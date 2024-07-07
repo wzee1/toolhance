@@ -10,6 +10,7 @@ import Navbar from "@/components/shared/Navbar/Navbar"
 import NavbarMobile from "@/components/shared/Navbar/NavbarMobile"
 import Footer from "@/components/shared/Footer/Footer"
 import { Toaster } from "@/components/ui/toaster"
+import CookieConsentBanner from "@/components/shared/other/CookieConsentBanner"
 
 export const metadata: Metadata = {
   title: "Toolhance",
@@ -34,6 +35,7 @@ export default function RootLayout({
           <Navbar />
           <NavbarMobile />
           {children}
+          <CookieConsentBanner />
           <Toaster />
           <Footer />
         </ThemeProvider>

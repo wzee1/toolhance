@@ -105,13 +105,10 @@ export const signUp = async (values: z.infer<typeof SignUpSchema>) => {
   const userId = generateId(15)
 
   try {
-    try {
-      await rateLimitByIP(5, 30000)
-    } catch {
-      return {
-        error: "Rate limit exceeded", status: 429
-      } 
-    }
+    const canProceed = await rateLimitByIP(5, 30000)
+    if (!canProceed) return {
+      error: "Rate limit exceeded", status: 429
+    } 
 
     await db.insert(userTable).values({
       id: userId,
